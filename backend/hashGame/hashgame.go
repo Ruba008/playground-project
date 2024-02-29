@@ -1,0 +1,5 @@
+package hashgame
+
+func hashgame() {
+
+}
