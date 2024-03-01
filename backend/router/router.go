@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 )
@@ -17,7 +18,13 @@ func GetRouter() {
 	defer logger.Sync()
 	router := gin.Default()
 
-	router.GET("/position", func(ctx *gin.Context) {
+	router.Use(cors.New(cors.Config{
+		AllowOrigins: []string{"http://localhost:8080"},
+		AllowMethods: []string{"*"},
+		AllowHeaders: []string{"*"},
+	}))
+
+	router.POST("/position", func(ctx *gin.Context) {
 		var HashPosition HashParams
 		err := ctx.BindJSON(&HashPosition)
 		if err != nil {
