@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 )
 
 type HashParams struct {
@@ -12,18 +13,23 @@ type HashParams struct {
 }
 
 func GetRouter() {
+	logger, _ := zap.NewProduction()
+	defer logger.Sync()
 	router := gin.Default()
 
 	router.GET("/position", func(ctx *gin.Context) {
-		var hashParams HashParams
-		err := ctx.BindJSON(&hashParams)
+		var HashPosition HashParams
+		err := ctx.BindJSON(&HashPosition)
 		if err != nil {
 			fmt.Print("err")
+			return
 		}
+
 		ctx.JSON(http.StatusOK, gin.H{
-			"message": hashParams.Position,
+			"message": HashPosition.Position,
 		})
 
 	})
+
 	router.Run(":8081")
 }
