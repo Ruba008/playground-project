@@ -6,6 +6,8 @@ import (
 )
 
 func GetRouter() {
+	
+	
 	// Router Initialization
 	router := gin.Default()
 
@@ -15,6 +17,8 @@ func GetRouter() {
 		AllowMethods: []string{"*"},
 		AllowHeaders: []string{"*"},
 	}))
+
+	// Routes ###############################################
 
 	// Hash game routes
 	hashRouter(router)

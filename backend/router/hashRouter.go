@@ -11,7 +11,7 @@ import (
 var logger, _ = zap.NewDevelopment()
 
 type HashParams struct {
-	Player   string `json:"player"`
+	Player   bool   `json:"player"`
 	Position [2]int `json:"position"`
 }
 
@@ -21,20 +21,6 @@ func hashRouter(router *gin.Engine) {
 	{
 		hashRoutes.POST("/position", getPosition)
 	}
-
-	router.POST("/position", func(ctx *gin.Context) {
-		var HashPosition HashParams
-		err := ctx.BindJSON(&HashPosition)
-		if err != nil {
-			logger.Info(err.Error())
-			return
-		}
-
-		ctx.JSON(http.StatusOK, gin.H{
-			"message": HashPosition.Position,
-		})
-
-	})
 
 }
 
@@ -50,9 +36,10 @@ func getPosition(ctx *gin.Context) {
 
 	// Response return
 	ctx.JSON(http.StatusOK, gin.H{
-		"message": HashPosition.Position,
+		"player":   HashPosition.Player,
+		"position": HashPosition.Position,
 	})
 
-	hashgame.HashGame(HashPosition.Position)
+	hashgame.HashGame(HashPosition.Player, HashPosition.Position)
 
 }

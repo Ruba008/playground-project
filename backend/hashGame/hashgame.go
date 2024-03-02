@@ -1,17 +1,16 @@
 package hashgame
 
 import (
-	"fmt"
-	"strings"
+	"strconv"
 
 	"go.uber.org/zap"
 )
 
-func HashGame(positionSelected [2]int) {
+func HashGame(player bool, position [2]int) {
 
 	logger, _ := zap.NewProduction()
 	defer logger.Sync()
 
-	logger.Info(strings.Trim(strings.Replace(fmt.Sprint(positionSelected), " ", ",", -1), "[]"))
+	logger.Info(strconv.FormatBool(player))
 
 }
