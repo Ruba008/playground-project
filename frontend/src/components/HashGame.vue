@@ -1,7 +1,7 @@
 <script setup>
 
     function getPosition(position){
-        fetch("http://localhost:8081/position", {
+        fetch("http://localhost:8081/v1/hash/position", {
             method: 'POST',
             body: JSON.stringify({
                 position: position
