@@ -9,9 +9,9 @@ import (
 )
 
 var logger, _ = zap.NewDevelopment()
-var Position [2]int
 
 type HashParams struct {
+	Player   string `json:"player"`
 	Position [2]int `json:"position"`
 }
 
@@ -53,8 +53,6 @@ func getPosition(ctx *gin.Context) {
 		"message": HashPosition.Position,
 	})
 
-	Position = HashPosition.Position
-
-	hashgame.HashGame(Position)
+	hashgame.HashGame(HashPosition.Position)
 
 }

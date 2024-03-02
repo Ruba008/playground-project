@@ -1,11 +1,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import PrimeVue from 'primevue/config'
-import 'primevue/resources/themes/aura-light-green/theme.css'
-import CustomButton from "primevue/button"
 import "./style.css"
+import '../node_modules/primevue/resources/themes/aura-light-green/theme.css'
+
 
 const app = createApp(App)
-app.use(PrimeVue)
-app.component('CustomButton', CustomButton)
 app.mount('#app')
