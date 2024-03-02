@@ -6,8 +6,7 @@ import (
 )
 
 func GetRouter() {
-	
-	
+
 	// Router Initialization
 	router := gin.Default()
 
