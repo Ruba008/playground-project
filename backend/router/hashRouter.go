@@ -20,6 +20,7 @@ func hashRouter(router *gin.Engine) {
 	hashRoutes := router.Group("/v1/hash")
 	{
 		hashRoutes.POST("/position", getPosition)
+		hashRoutes.GET("/getResult", getResult)
 	}
 
 }
@@ -41,5 +42,14 @@ func getPosition(ctx *gin.Context) {
 	})
 
 	hashgame.HashGame(HashPosition.Player, HashPosition.Position)
+
+}
+
+func getResult(ctx *gin.Context) {
+
+	ctx.JSON(http.StatusOK, gin.H{
+		"draw":         hashgame.Draw,
+		"playerWinner": hashgame.PlayerWinner,
+	})
 
 }

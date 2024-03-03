@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 const player = ref("Player 1");
+var resultHashGame = ref(null)
 
 const square11 = ref(null);
 const square12 = ref(null);
@@ -104,7 +105,15 @@ function getPosition(position) {
       }
       break;
   }
+  verifyResult()
+}
 
+function verifyResult(){
+  fetch("http://localhost:8081/v1/hash/getResult")
+    .then(res => {
+      resultHashGame.value = res.json()
+      console.log(resultHashGame.value)
+    })
 }
 </script>
 
