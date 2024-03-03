@@ -29,7 +29,7 @@ function setPosition(position){
   fetch("http://localhost:8081/v1/hash/position", {
     method: "POST",
     body: JSON.stringify({
-      player: playerBool.value,
+      player: !playerBool.value,
       position: position,
     }),
   }).then((res) => console.log(res.json()));
